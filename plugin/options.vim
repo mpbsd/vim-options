@@ -37,7 +37,7 @@ let s:options = {
       \      'r': '-',
       \    },
       \    'options': {
-      \      'guifont': "Hack\\ Nerd\\ Font\\ Mono\\ 14",
+      \      'guifont': "Hack\\\\ Nerd\\\\ Font\\\\ Mono\\\\ 14",
       \      'guiheadroom': 0,
       \    },
       \  },
