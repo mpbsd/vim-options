@@ -44,6 +44,7 @@ let s:categories = {
       \  'colorschemes': [
       \    'habamax',
       \    'lunaperche',
+      \    'pablo',
       \    'slate',
       \  ],
       \  'guioptions': {
