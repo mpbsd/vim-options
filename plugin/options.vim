@@ -1,4 +1,4 @@
-" options.vim: options that I've chosen to configure for my vimrc
+" options.vim: options for my vimrc
 " Maintainer:  @mpbsd
 " Version:     0.1
 
@@ -89,3 +89,5 @@ endfunction
 
 call VimSetOptions(s:options)
 call VimSetColorscheme()
+
+" vim: set fileencoding=utf8: "
