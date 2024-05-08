@@ -56,7 +56,7 @@ let s:categories = {
       \      'r': '-',
       \    },
       \    'options': {
-      \      'guifont': 'HackNerdFontMono',
+      \      'guifont': 'Hack\ Nerd\ Font\ Mono\ 14',
       \      'guiheadroom': 0,
       \    },
       \  },
@@ -81,7 +81,7 @@ function VimSetOptionsFromCategory(ctg_name, ctg_objs) abort
         execute printf("set guioptions %s=%s", rhs, lhs)
       endfor
       for [lhs, rhs] in items(a:ctg_objs['options'])
-        execute printf("set %s = %s", lhs, rhs)
+        execute printf("set %s=%s", lhs, rhs)
       endfor
     endif
   endif
