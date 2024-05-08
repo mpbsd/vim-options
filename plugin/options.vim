@@ -60,7 +60,7 @@ function VimSetAnOption(ctg, lhs, rhs) abort
   elseif a:ctg ==# 'guioptions'
     if has("gui_running")
       let l:special_cases = ['guiheadroom', 'guifont']
-      if index(a:lhs, l:special_cases) >= 0
+      if index(l:special_cases, a:lhs) >= 0
         execute printf("set %s = %s", a:lhs, a:rhs)
       else
         execute printf("set guioptions %s=%s", a:rhs, a:lhs)
