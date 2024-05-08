@@ -4,7 +4,7 @@
 
 " s:options {{{
 let s:options = {
-      \  'bool': {
+      \  'boolean': {
       \    'number': v:true,
       \    'relativenumber': v:true,
       \    'cursorline': v:true,
@@ -27,23 +27,21 @@ let s:options = {
       \    'list': v:true,
       \    'modeline': v:true,
       \  },
-      \  'grpx': {
+      \  'guioptions': {
       \    'T': '-',
       \    'b': '-',
       \    'd': '+',
       \    'l': '-',
       \    'm': '-',
       \    'r': '-',
-      \  },
-      \  'misc': {
-      \    't_Co': 256,
       \    'guiheadroom': 0,
       \    'guifont': 'Hack\ Nerd\ Font\ Mono\ 14',
       \  },
       \  'term': {
+      \    't_Co': 256,
       \    'background': 'dark',
       \    'colorcolumn': 80,
-      \    'encoding': 'utf8',
+      \    'encoding': 'utf-8',
       \    'fillchars': 'vert:\|,fold:.,foldsep:\|',
       \    'listchars': 'trail:.,tab:<->,extends:>,precedes:<,nbsp:-',
       \    'numberwidth': 6,
@@ -57,9 +55,9 @@ let s:options = {
 " }}}
 
 function VimSetAnOption(ctg, lhs, rhs) abort
-  if a:ctg ==# 'bool'
+  if a:ctg ==# 'boolean'
     execute printf("set %s", (a:rhs == v:true) ? a:lhs : ('no' . a:lhs))
-  elseif a:ctg ==# 'grpx'
+  elseif a:ctg ==# 'guioptions'
     if has("gui_running")
       execute printf("set guioptions %s=%s", a:rhs, a:lhs)
     endif
@@ -89,4 +87,4 @@ endfunction
 call VimSetOptions(s:options)
 call VimSetColorscheme()
 
-" vim: set fileencoding=utf8: "
+" vim: set fileencoding=utf-8: "
