@@ -2,8 +2,8 @@
 " Maintainer:  @mpbsd
 " Version:     0.1
 
-" s:options {{{
-let s:options = {
+" s:categories {{{
+let s:categories = {
       \  'boolean': {
       \    'number': v:true,
       \    'relativenumber': v:true,
@@ -55,6 +55,11 @@ let s:options = {
       \    'spellsuggest': 'fast,15',
       \    'dict': '~/.vim/spell/words.dict',
       \  },
+      \  'colorscheme': [
+      \    'habamax',
+      \    'lunaperche',
+      \    'slate',
+      \  ],
       \}
 " }}}
 
@@ -76,26 +81,18 @@ function VimSetAnOption(ctg) abort
     for [lhs, rhs] in items(s:options['value'])
       execute printf("set %s=%s", lhs, rhs)
     endfor
+  elseif a:ctg ==# 'colorscheme'
+    let l:choice = rand(srand()) % len(l:colorscheme)
+    execute printf("colorscheme %s", l:colorscheme[l:choice])
   endif
 endfunction
 
-function VimSetOptions(options) abort
-  for ctg in keys(a:options)
+function VimSetOptions(categories) abort
+  for ctg in keys(a:categories)
     call VimSetAnOption(ctg)
   endfor
 endfunction
 
-function VimSetColorscheme() abort
-  let l:colorscheme = [
-        \  'habamax',
-        \  'lunaperche',
-        \  'slate',
-        \]
-  let l:choice = rand(srand()) % len(l:colorscheme)
-  execute printf("colorscheme %s", l:colorscheme[l:choice])
-endfunction
-
-call VimSetOptions(s:options)
-call VimSetColorscheme()
+call VimSetOptions(s:categories)
 
 " vim: set fileencoding=utf-8: "
