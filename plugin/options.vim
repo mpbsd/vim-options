@@ -28,20 +28,20 @@ let s:options = {
       \    'modeline': v:true,
       \  },
       \  'guioptions': {
-      \    'flags': [
+      \    'flags': {
       \      'T': '-',
       \      'b': '-',
       \      'd': '+',
       \      'l': '-',
       \      'm': '-',
       \      'r': '-',
-      \    ],
-      \    'options': [
+      \    },
+      \    'options': {
       \      'guifont': "Hack\\ Nerd\\ Font\\ Mono\\ 14",
       \      'guiheadroom': 0,
-      \    ],
+      \    },
       \  },
-      \  'term': {
+      \  'value': {
       \    't_Co': 256,
       \    'background': 'dark',
       \    'colorcolumn': 80,
@@ -58,28 +58,30 @@ let s:options = {
       \}
 " }}}
 
-function VimSetAnOption(ctg, lhs, rhs) abort
+function VimSetAnOption(ctg) abort
   if a:ctg ==# 'boolean'
-    execute printf("set %s", (a:rhs == v:true) ? a:lhs : ('no' . a:lhs))
+    for [lhs, rhs] in items(s:options[a:ctg])
+      execute printf("set %s", (rhs == v:true) ? lhs : ('no' . lhs))
+    endfor
   elseif a:ctg ==# 'guioptions'
     if has("gui_running")
-      for flag in s:options[a:ctg]['flags']
-        execute printf("set guioptions %s=%s", a:rhs, a:lhs)
+      for [lhs, rhs] in items(s:options[a:ctg]['flags'])
+        execute printf("set guioptions %s=%s", rhs, lhs)
       endfor
-      for opt in s:options[a:ctg]['options']
-        execute printf("set %s = %s", a:lhs, a:rhs)
+      for [lhs, rhs] in items(s:options[a:ctg]['options'])
+        execute printf("set %s = %s", lhs, rhs)
       endfor
     endif
-  else
-    execute printf("set %s=%s", a:lhs, a:rhs)
+  elseif a:ctg ==# 'value'
+    for [lhs, rhs] in items(s:options[a:ctg])
+      execute printf("set %s=%s", lhs, rhs)
+    endfor
   endif
 endfunction
 
 function VimSetOptions(options) abort
   for ctg in keys(a:options)
-    for [lhs, rhs] in items(a:options[ctg])
-      call VimSetAnOption(ctg, lhs, rhs)
-    endfor
+    call VimSetAnOption(ctg)
   endfor
 endfunction
 
