@@ -4,29 +4,48 @@
 
 " s:categories {{{
 let s:categories = {
-      \  'boolean': {
+      \  'booleans': {
+      \    'autoindent': v:true,
+      \    'cursorcolumn': v:true,
+      \    'cursorline': v:true,
+      \    'expandtab': v:true,
+      \    'hidden': v:true,
+      \    'ignorecase': v:true,
+      \    'lazyredraw': v:true,
+      \    'linebreak': v:true,
+      \    'list': v:true,
+      \    'magic': v:true,
+      \    'modeline': v:true,
+      \    'nojoinspaces': v:true,
+      \    'noshowmode': v:true,
       \    'number': v:true,
       \    'relativenumber': v:true,
-      \    'cursorline': v:true,
-      \    'cursorcolumn': v:true,
-      \    'expandtab': v:true,
-      \    'autoindent': v:true,
-      \    'smartindent': v:true,
-      \    'linebreak': v:true,
-      \    'nojoinspaces': v:true,
-      \    'splitright': v:true,
-      \    'splitbelow': v:true,
-      \    'magic': v:true,
-      \    'ignorecase': v:true,
-      \    'smartcase': v:true,
-      \    'hidden': v:true,
-      \    'undofile': v:true,
-      \    'lazyredraw': v:true,
       \    'secure': v:true,
-      \    'noshowmode': v:true,
-      \    'list': v:true,
-      \    'modeline': v:true,
+      \    'smartcase': v:true,
+      \    'smartindent': v:true,
+      \    'splitbelow': v:true,
+      \    'splitright': v:true,
+      \    'undofile': v:true,
       \  },
+      \  'values': {
+      \    'background': 'dark',
+      \    'colorcolumn': 80,
+      \    'dict': '~/.vim/spell/words.dict',
+      \    'encoding': 'utf-8',
+      \    'fillchars': 'vert:\|,fold:.,foldsep:\|',
+      \    'listchars': 'trail:.,tab:<->,extends:>,precedes:<,nbsp:-',
+      \    'numberwidth': 6,
+      \    'shiftwidth': 2,
+      \    'spelllang': 'en_us,pt_br,de_de',
+      \    'spellsuggest': 'fast,15',
+      \    't_Co': 256,
+      \    'tabstop': 2,
+      \  },
+      \  'colorschemes': [
+      \    'habamax',
+      \    'lunaperche',
+      \    'slate',
+      \  ],
       \  'guioptions': {
       \    'flags': {
       \      'T': '-',
@@ -37,62 +56,43 @@ let s:categories = {
       \      'r': '-',
       \    },
       \    'options': {
-      \      'guifont': 'HackNerdFontMono\\ 14',
+      \      'guifont': 'HackNerdFontMono',
       \      'guiheadroom': 0,
       \    },
       \  },
-      \  'value': {
-      \    't_Co': 256,
-      \    'background': 'dark',
-      \    'colorcolumn': 80,
-      \    'encoding': 'utf-8',
-      \    'fillchars': 'vert:\|,fold:.,foldsep:\|',
-      \    'listchars': 'trail:.,tab:<->,extends:>,precedes:<,nbsp:-',
-      \    'numberwidth': 6,
-      \    'tabstop': 2,
-      \    'shiftwidth': 2,
-      \    'spelllang': 'en_us,pt_br,de_de',
-      \    'spellsuggest': 'fast,15',
-      \    'dict': '~/.vim/spell/words.dict',
-      \  },
-      \  'colorscheme': [
-      \    'habamax',
-      \    'lunaperche',
-      \    'slate',
-      \  ],
       \}
 " }}}
 
-function VimSetAnOption(ctg) abort
-  if a:ctg ==# 'boolean'
-      for [lhs, rhs] in items(s:categories['boolean'])
+function VimSetOptionsFromCategory(ctg_name, ctg_objs) abort
+  if a:ctg_name ==# 'booleans'
+    for [lhs, rhs] in items(a:ctg_objs)
       execute printf("set %s", (rhs == v:true) ? lhs : ('no' . lhs))
     endfor
-  elseif a:ctg ==# 'guioptions'
+  elseif a:ctg_name ==# 'values'
+    for [lhs, rhs] in items(a:ctg_objs)
+      execute printf("set %s=%s", lhs, rhs)
+    endfor
+  elseif a:ctg_name ==# 'colorschemes'
+    let l:choice = rand(srand()) % len(a:ctg_objs)
+    execute printf("colorscheme %s", a:ctg_objs[l:choice])
+  elseif a:ctg_name ==# 'guioptions'
     if has("gui_running")
-	for [lhs, rhs] in items(s:categories['guioptions']['flags'])
+      for [lhs, rhs] in items(a:ctg_objs['flags'])
         execute printf("set guioptions %s=%s", rhs, lhs)
       endfor
-      for [lhs, rhs] in items(s:categories['guioptions']['options'])
+      for [lhs, rhs] in items(a:ctg_objs['options'])
         execute printf("set %s = %s", lhs, rhs)
       endfor
     endif
-  elseif a:ctg ==# 'value'
-      for [lhs, rhs] in items(s:categories['value'])
-      execute printf("set %s=%s", lhs, rhs)
-    endfor
-  elseif a:ctg ==# 'colorscheme'
-      let l:choice = rand(srand()) % len(s:categories['colorscheme'])
-      execute printf("colorscheme %s", s:categories['colorscheme'][l:choice])
   endif
 endfunction
 
-function VimSetOptions(categories) abort
-  for ctg in keys(a:categories)
-    call VimSetAnOption(ctg)
+function VimSetOptionsFromAllCategories(categories) abort
+  for [ctg_name, ctg_objs] in items(a:categories)
+    call VimSetOptionsFromCategory(ctg_name, ctg_objs)
   endfor
 endfunction
 
-call VimSetOptions(s:categories)
+call VimSetOptionsFromAllCategories(s:categories)
 
 " vim: set fileencoding=utf-8: "
