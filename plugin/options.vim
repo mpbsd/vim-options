@@ -35,7 +35,7 @@ let s:options = {
       \    'm': '-',
       \    'r': '-',
       \    'guiheadroom': 0,
-      \    'guifont': 'Hack\\ Nerd\\ Font\\ Mono\\ 14',
+      \    'guifont': 'Hack Nerd Font Mono 14',
       \  },
       \  'term': {
       \    't_Co': 256,
