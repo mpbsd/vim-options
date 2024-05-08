@@ -28,14 +28,18 @@ let s:options = {
       \    'modeline': v:true,
       \  },
       \  'guioptions': {
-      \    'T': '-',
-      \    'b': '-',
-      \    'd': '+',
-      \    'l': '-',
-      \    'm': '-',
-      \    'r': '-',
-      \    'guiheadroom': 0,
-      \    'guifont': 'Hack Nerd Font Mono 14',
+      \    'flags': [
+      \      'T': '-',
+      \      'b': '-',
+      \      'd': '+',
+      \      'l': '-',
+      \      'm': '-',
+      \      'r': '-',
+      \    ],
+      \    'options': [
+      \      'guifont': "Hack\\ Nerd\\ Font\\ Mono\\ 14",
+      \      'guiheadroom': 0,
+      \    ],
       \  },
       \  'term': {
       \    't_Co': 256,
@@ -59,12 +63,12 @@ function VimSetAnOption(ctg, lhs, rhs) abort
     execute printf("set %s", (a:rhs == v:true) ? a:lhs : ('no' . a:lhs))
   elseif a:ctg ==# 'guioptions'
     if has("gui_running")
-      let l:special_cases = ['guiheadroom', 'guifont']
-      if index(l:special_cases, a:lhs) >= 0
-        execute printf("set %s = %s", a:lhs, a:rhs)
-      else
+      for flag in s:options[a:ctg]['flags']
         execute printf("set guioptions %s=%s", a:rhs, a:lhs)
-      endif
+      endfor
+      for opt in s:options[a:ctg]['options']
+        execute printf("set %s = %s", a:lhs, a:rhs)
+      endfor
     endif
   else
     execute printf("set %s=%s", a:lhs, a:rhs)
