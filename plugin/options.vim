@@ -82,8 +82,8 @@ function VimSetAnOption(ctg) abort
       execute printf("set %s=%s", lhs, rhs)
     endfor
   elseif a:ctg ==# 'colorscheme'
-    let l:choice = rand(srand()) % len(l:colorscheme)
-    execute printf("colorscheme %s", l:colorscheme[l:choice])
+      let l:choice = rand(srand()) % len(s:categories['colorscheme'])
+      execute printf("colorscheme %s", s:categories['colorscheme'][l:choice])
   endif
 endfunction
 
