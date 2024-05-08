@@ -37,7 +37,7 @@ let s:options = {
       \      'r': '-',
       \    },
       \    'options': {
-      \      'guifont': "Hack\\\\ Nerd\\\\ Font\\\\ Mono\\\\ 14",
+      \      'guifont': 'HackNerdFontMono\ 14',
       \      'guiheadroom': 0,
       \    },
       \  },
@@ -60,20 +60,20 @@ let s:options = {
 
 function VimSetAnOption(ctg) abort
   if a:ctg ==# 'boolean'
-    for [lhs, rhs] in items(s:options[a:ctg])
+    for [lhs, rhs] in items(s:options['boolean'])
       execute printf("set %s", (rhs == v:true) ? lhs : ('no' . lhs))
     endfor
   elseif a:ctg ==# 'guioptions'
     if has("gui_running")
-      for [lhs, rhs] in items(s:options[a:ctg]['flags'])
+      for [lhs, rhs] in items(s:options['guioptions']['flags'])
         execute printf("set guioptions %s=%s", rhs, lhs)
       endfor
-      for [lhs, rhs] in items(s:options[a:ctg]['options'])
+      for [lhs, rhs] in items(s:options['guioptions']['options'])
         execute printf("set %s = %s", lhs, rhs)
       endfor
     endif
   elseif a:ctg ==# 'value'
-    for [lhs, rhs] in items(s:options[a:ctg])
+    for [lhs, rhs] in items(s:options['value'])
       execute printf("set %s=%s", lhs, rhs)
     endfor
   endif
