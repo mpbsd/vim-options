@@ -65,20 +65,20 @@ let s:categories = {
 
 function VimSetAnOption(ctg) abort
   if a:ctg ==# 'boolean'
-    for [lhs, rhs] in items(s:options['boolean'])
+      for [lhs, rhs] in items(s:categories['boolean'])
       execute printf("set %s", (rhs == v:true) ? lhs : ('no' . lhs))
     endfor
   elseif a:ctg ==# 'guioptions'
     if has("gui_running")
-      for [lhs, rhs] in items(s:options['guioptions']['flags'])
+	for [lhs, rhs] in items(s:categories['guioptions']['flags'])
         execute printf("set guioptions %s=%s", rhs, lhs)
       endfor
-      for [lhs, rhs] in items(s:options['guioptions']['options'])
+      for [lhs, rhs] in items(s:categories['guioptions']['options'])
         execute printf("set %s = %s", lhs, rhs)
       endfor
     endif
   elseif a:ctg ==# 'value'
-    for [lhs, rhs] in items(s:options['value'])
+      for [lhs, rhs] in items(s:categories['value'])
       execute printf("set %s=%s", lhs, rhs)
     endfor
   elseif a:ctg ==# 'colorscheme'
