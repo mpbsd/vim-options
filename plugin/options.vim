@@ -52,7 +52,6 @@ let s:options = {
       \    'spelllang': 'en_us,pt_br,de_de',
       \    'spellsuggest': 'fast,15',
       \    'dict': '~/.vim/spell/words.dict',
-      \    'statusline': '%!VimSetStatusline()',
       \  },
       \}
 " }}}
