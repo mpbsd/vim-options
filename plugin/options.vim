@@ -2,149 +2,104 @@
 " Maintainer:  @mpbsd
 " Version:     0.2
 
-" s:categories {{{
-let s:categories = {
-      \  'booleans': {
-      \    'autoindent': v:true,
-      \    'autoread': v:true,
-      \    'compatible': v:false,
-      \    'cursorcolumn': v:true,
-      \    'cursorline': v:true,
-      \    'expandtab': v:true,
-      \    'fsync': v:false,
-      \    'hidden': v:true,
-      \    'hlsearch': v:true,
-      \    'ignorecase': v:true,
-      \    'incsearch': v:true,
-      \    'joinspaces': v:false,
-      \    'langremap': v:false,
-      \    'lazyredraw': v:true,
-      \    'magic': v:true,
-      \    'number': v:true,
-      \    'relativenumber': v:true,
-      \    'ruler': v:true,
-      \    'secure': v:true,
-      \    'showcmd': v:true,
-      \    'showmode': v:true,
-      \    'smartcase': v:true,
-      \    'smartindent': v:true,
-      \    'smarttab': v:true,
-      \    'splitbelow': v:true,
-      \    'splitright': v:true,
-      \    'startofline': v:false,
-      \    'ttyfast': v:true,
-      \    'undofile': v:true,
-      \    'wildmenu': v:true,
-      \  },
-      \  'values': {
-      \    'background': 'dark',
-      \    'backspace': 'indent,eol,start',
-      \    'belloff': 'all',
-      \    'colorcolumn': 80,
-      \    'comments': 'fb:-,fb:*,n:>',
-      \    'commentstring': '',
-      \    'complete': '.,w,b,u,t',
-      \    'define': '',
-      \    'dict': '~/.vim/spell/words.dict',
-      \    'display': 'lastline',
-      \    'encoding': 'utf-8',
-      \    'filetype': 'on',
-      \    'fillchars': 'vert:\|,fold:.,foldsep:\|',
-      \    'formatoptions': 'tcqj',
-      \    'history': 10000,
-      \    'include': '',
-      \    'laststatus': 2,
-      \    'listchars': 'tab:<->,trail:-,nbsp:+',
-      \    'mouse': 'nvi',
-      \    'mousemodel': 'popup_setpos',
-      \    'nrformats': 'bin,hex',
-      \    'numberwidth': 6,
-      \    'path': '.,,',
-      \    'sessionoptions': join(
-      \      [
-      \        'blank',
-      \        'buffers',
-      \        'curdir',
-      \        'folds',
-      \        'help',
-      \        'tabpages',
-      \        'winsize',
-      \        'terminal'
-      \      ], ','),
-      \    'shiftwidth': 2,
-      \    'shortmess': 'ltTotOCF',
-      \    'sidescroll': 1,
-      \    'spelllang': 'en_us,pt_br,de_de',
-      \    'spellsuggest': 'fast,15',
-      \    'switchbuf': 'uselast',
-      \    'syntax': 'on',
-      \    't_Co': 256,
-      \    'tabpagemax': 50,
-      \    'tabstop': 2,
-      \    'tags': './tags;,tags',
-      \    'ttimeoutlen': 50,
-      \    'viewoptions': 'folds,cursor,curdir,unix,slash',
-      \    'viminfo': '!,''100,<50,s10,h',
-      \    'wildoptions': 'pum,tagfile',
-      \  },
-      \  'colorschemes': [
-      \    'habamax',
-      \    'lunaperche',
-      \    'pablo',
-      \    'slate',
-      \  ],
-      \  'guioptions': {
-      \    'flags': {
-      \      'T': '-',
-      \      'b': '-',
-      \      'd': '+',
-      \      'l': '-',
-      \      'm': '-',
-      \      'r': '-',
-      \    },
-      \    'options': {
-      \      'guifont': 'Hack\ Nerd\ Font\ Mono\ 14',
-      \      'guiheadroom': 0,
-      \    },
-      \  },
-      \  'other': [
-			\    'runtime ftplugin/man.vim',
-      \  ],
-      \}
-" }}}
+set nocompatible
+set backspace=indent,eol,start
 
-function! s:VimSetOptionsFromCategory(ctg_name, ctg_opts) abort
-  if a:ctg_name ==# 'booleans'
-    for [lhs, rhs] in items(a:ctg_opts)
-      execute printf("set %s", (rhs == v:true) ? lhs : ('no' . lhs))
-    endfor
-  elseif a:ctg_name ==# 'values'
-    for [lhs, rhs] in items(a:ctg_opts)
-      execute printf("set %s=%s", lhs, rhs)
-    endfor
-  elseif a:ctg_name ==# 'colorschemes'
-    let l:choice = rand(srand()) % len(a:ctg_opts)
-    execute printf("colorscheme %s", a:ctg_opts[l:choice])
-  elseif a:ctg_name ==# 'guioptions'
-    if has("gui_running")
-      for [lhs, rhs] in items(a:ctg_opts['flags'])
-        execute printf("set guioptions %s=%s", rhs, lhs)
-      endfor
-      for [lhs, rhs] in items(a:ctg_opts['options'])
-        execute printf("set %s=%s", lhs, rhs)
-      endfor
-    endif
-	elseif a:ctg_name ==# 'other'
-		for opt in a:ctg_opts
-			execute opt
-		endfor
-  endif
+filetype plugin indent on
+syntax enable
+
+set autoindent
+set autoread
+set cursorcolumn
+set cursorline
+set expandtab
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set lazyredraw
+set magic
+set nofsync
+set nojoinspaces
+set nolangremap
+set nostartofline
+set number
+set relativenumber
+set ruler
+set secure
+set showcmd
+set showmode
+set smartcase
+set smartindent
+set smarttab
+set splitbelow
+set splitright
+set ttyfast
+set undofile
+set wildmenu
+
+set background=dark
+set belloff=all
+set colorcolumn=80
+set comments=fb:-,fb:*,n:>
+set commentstring=
+set complete=.,w,b,u,t
+set define=
+set dict=~/.vim/spell/words.dict
+set display=lastline
+set encoding=utf-8
+set fillchars=vert:\|,fold:.,foldsep:\|
+set formatoptions=tcqj
+set history=10000
+set include=''
+set laststatus=2
+set listchars=tab:<->,trail:-,nbsp:+
+set mouse=nvi
+set mousemodel=popup_setpos
+set nrformats=bin,hex
+set numberwidth=6
+set path=.,,
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
+set shiftwidth=2
+set shortmess=ltTotOCF
+set sidescroll=1
+set spelllang=en_us,pt_br,de_de
+set spellsuggest=fast,15
+set switchbuf=uselast
+set t_Co=256
+set tabpagemax=50
+set tabstop=2
+set tags=./tags;,tags
+set ttimeout
+set ttimeoutlen=50
+set viewoptions=folds,cursor,curdir,unix,slash
+set viminfo=!,'100,<50,s10,h
+set wildoptions=pum,tagfile
+
+function! s:VimChooseColorschemeForMe() abort
+  let l:options = [
+        \  'habamax',
+        \  'lunaperche',
+        \  'murphy',
+        \  'pablo',
+        \  'slate',
+        \]
+  let l:choice = rand(srand()) % len(l:options)
+  execute printf("colorscheme %s", l:options[l:choice])
 endfunction
 
-function! s:VimSetOptionsFromAllCategories(categories) abort
-  for [ctg_name, ctg_opts] in items(a:categories)
-    call s:VimSetOptionsFromCategory(ctg_name, ctg_opts)
-  endfor
-endfunction
+call s:VimChooseColorschemeForMe()
 
-call s:VimSetOptionsFromAllCategories(s:categories)
+if has("gui_running")
+  set guioptions-=T
+  set guioptions-=b
+  set guioptions+=d
+  set guioptions-=l
+  set guioptions-=m
+  set guioptions-=r
+  set guifont='Hack\ Nerd\ Font\ Mono\ 14'
+  set guiheadroom=0
+endif
+
+runtime macros/matchit.vim
+runtime ftplugin/man.vim
