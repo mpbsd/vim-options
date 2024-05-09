@@ -2,14 +2,14 @@
 " Maintainer:  @mpbsd
 " Version:     0.2
 
-" disable Vi compatibility
+" disable compatibility with Vi
 set nocompatible
 
 " how backspace works at start of line
 set backspace=indent,eol,start
 
-" when this option is set, the FileType autocommand event is triggered.
-" All autocommands that match with the value of this option will be executed.
+" when this option is set, the FileType autocommand event is triggered. All
+" autocommands that match with the value of this option will be executed.
 filetype plugin indent on
 
 " syntax to be loaded for current buffer
@@ -48,7 +48,8 @@ set cursorline
 " pattern to be used to find a macro definition
 set define=
 
-" List of file names, separated by commas, that are used to lookup words for keyword completion commands i_CTRL-X_CTRL-K
+" list of file names, separated by commas, that are used to lookup words for
+" keyword completion commands i_CTRL-X_CTRL-K
 set dict=~/.vim/spell/words.dict
 
 " list of flags for how to display text
