@@ -14,7 +14,7 @@ let s:categories = {
       \    'lazyredraw': v:true,
       \    'magic': v:true,
       \    'modeline': v:true,
-      \    'nojoinspaces': v:true,
+      \    'nojoinspaces': v:false,
       \    'showmode': v:true,
       \    'number': v:true,
       \    'relativenumber': v:true,
