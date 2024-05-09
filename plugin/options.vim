@@ -1,6 +1,6 @@
 " options.vim: options for my vimrc
 " Maintainer:  @mpbsd
-" Version:     0.1
+" Version:     0.2
 
 " s:categories {{{
 let s:categories = {
@@ -110,36 +110,34 @@ let s:categories = {
       \}
 " }}}
 
-function VimSetOptionsFromCategory(ctg_name, ctg_objs) abort
+function! s:VimSetOptionsFromCategory(ctg_name, ctg_opts) abort
   if a:ctg_name ==# 'booleans'
-    for [lhs, rhs] in items(a:ctg_objs)
+    for [lhs, rhs] in items(a:ctg_opts)
       execute printf("set %s", (rhs == v:true) ? lhs : ('no' . lhs))
     endfor
   elseif a:ctg_name ==# 'values'
-    for [lhs, rhs] in items(a:ctg_objs)
+    for [lhs, rhs] in items(a:ctg_opts)
       execute printf("set %s=%s", lhs, rhs)
     endfor
   elseif a:ctg_name ==# 'colorschemes'
-    let l:choice = rand(srand()) % len(a:ctg_objs)
-    execute printf("colorscheme %s", a:ctg_objs[l:choice])
+    let l:choice = rand(srand()) % len(a:ctg_opts)
+    execute printf("colorscheme %s", a:ctg_opts[l:choice])
   elseif a:ctg_name ==# 'guioptions'
     if has("gui_running")
-      for [lhs, rhs] in items(a:ctg_objs['flags'])
+      for [lhs, rhs] in items(a:ctg_opts['flags'])
         execute printf("set guioptions %s=%s", rhs, lhs)
       endfor
-      for [lhs, rhs] in items(a:ctg_objs['options'])
+      for [lhs, rhs] in items(a:ctg_opts['options'])
         execute printf("set %s=%s", lhs, rhs)
       endfor
     endif
   endif
 endfunction
 
-function VimSetOptionsFromAllCategories(categories) abort
-  for [ctg_name, ctg_objs] in items(a:categories)
-    call VimSetOptionsFromCategory(ctg_name, ctg_objs)
+function! s:VimSetOptionsFromAllCategories(categories) abort
+  for [ctg_name, ctg_opts] in items(a:categories)
+    call s:VimSetOptionsFromCategory(ctg_name, ctg_opts)
   endfor
 endfunction
 
-call VimSetOptionsFromAllCategories(s:categories)
-
-" vim: set fileencoding=utf-8: "
+call s:VimSetOptionsFromAllCategories(s:categories)
