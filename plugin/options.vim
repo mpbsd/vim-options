@@ -2,93 +2,238 @@
 " Maintainer:  @mpbsd
 " Version:     0.2
 
-set nocompatible
+" take indent for new line from previous line
+set autoindent
+
+" autom. read file when changed outside of Vim
+set autoread
+
+" how backspace works at start of line
 set backspace=indent,eol,start
 
+" do not ring the bell for these reasons
+set belloff=all
+
+" columns to highlight
+set colorcolumn=80
+
+" patterns that can start a comment line
+set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:•
+
+" template for comments; used for fold marker
+set commentstring=
+
+" disable compatibility with Vi
+set nocompatible
+
+" specify how Insert mode completion works
+set complete=.,w,b,u,t
+
+" highlight the screen column of the cursor
+set cursorcolumn
+
+" highlight the screen line of the cursor
+set cursorline
+
+" pattern to be used to find a macro definition
+set define=
+
+" List of file names, separated by commas, that are used to lookup words for
+" keyword completion commands i_CTRL-X_CTRL-K
+set dict=~/.vim/spell/words.dict
+
+" list of flags for how to display text
+set display=lastline
+
+" encoding used internally
+set encoding=utf-8
+
+" use spaces when <Tab> is inserted
+set expandtab
+
+" type of file, used for autocommands
 filetype plugin indent on
+
+" characters to use for displaying special items
+set fillchars=vert:│,fold:·,foldsep:│
+
+" how automatic formatting is to be done
+set formatoptions=tcqj
+
+" whether to invoke fsync() after file write
+set nofsync
+
+" don't unload buffer when it is abandoned
+set hidden
+
+" number of command-lines that are remembered
+set history=10000
+
+" highlight matches with last search pattern
+set hlsearch
+
+" ignore case in search patterns
+set ignorecase
+
+" pattern to be used to find an include file
+set include=
+
+" highlight match while typing search pattern
+set incsearch
+
+" two spaces after a period with a join command
+set nojoinspaces
+
+" do apply langmap to mapped characters
+set nolangremap
+
+" don't redraw while executing macros
+set lazyredraw
+
+" characters for displaying in list mode
+set listchars=tab:<->,trail:-,nbsp:+
+
+" changes special characters in search patterns
+set magic
+
+" enable the use of mouse clicks
+set mouse=nvi
+
+" changes meaning of mouse buttons
+set mousemodel=popup_setpos
+
+" number formats recognized for CTRL-A command
+set nrformats=bin,hex
+
+" print the line number in front of each line
+set number
+
+" number of columns used for the line number
+set numberwidth=6
+
+" list of directories searched with 'gf' et.al.
+set path=.,,
+
+" show relative line number in front of each line
+set relativenumber
+
+" secure mode for reading .vimrc in current dir
+set secure
+
+" options for :mksession
+set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
+
+" number of spaces to use for (auto)indent step
+set shiftwidth=2
+
+" list of flags, reduce length of messages
+set shortmess=ltToOCF
+
+" show (partial) command somewhere
+set showcmd
+
+" message on status line to show current mode
+set showmode
+
+" minimum number of columns to scroll horizontal
+set sidescroll=1
+
+" no ignore case when pattern has uppercase
+set smartcase
+
+" smart autoindenting for C programs
+set smartindent
+
+" use shiftwidth when inserting <Tab>
+set smarttab
+
+" language(s) to do spell checking for
+set spelllang=en_us,pt_br,de_de
+
+" method(s) used to suggest spelling corrections
+set spellsuggest=fast,15
+
+" new window from split is below the current one
+set splitbelow
+
+" new window is put right of the current one
+set splitright
+
+" commands move cursor to first non-blank in line
+set nostartofline
+
+" sets behavior when switching to another buffer
+set switchbuf=uselast
+
+" syntax to be loaded for current buffer
 syntax enable
 
-set autoindent
-set autoread
-set cursorcolumn
-set cursorline
-set expandtab
-set hidden
-set hlsearch
-set ignorecase
-set incsearch
-set lazyredraw
-set magic
-set nofsync
-set nojoinspaces
-set nolangremap
-set nostartofline
-set number
-set relativenumber
-set ruler
-set secure
-set showcmd
-set showmode
-set smartcase
-set smartindent
-set smarttab
-set splitbelow
-set splitright
+" number of colors
+set t_Co=256
+
+" maximum number of tab pages for -p and 'tab all'
+set tabpagemax=50
+
+" number of spaces that <Tab> in file uses
+set tabstop=2
+
+" list of file names used by the tag command
+set tags=./tags;,tags
+
+" maximum width of text that is being inserted
+set textwidth=80
+
+" time out on mappings and key codes
+set timeout
+
+" time out on mappings
+set ttimeout
+
+" time out time for key codes in milliseconds
+set ttimeoutlen=50
+
+" indicates a fast terminal connection
 set ttyfast
+
+" save undo information in a file
 set undofile
+
+" specifies what to save for :mkview
+set viewoptions=folds,cursor,curdir
+
+" use .viminfo file upon startup and exiting
+set viminfo=!,'100,<50,s10,h
+
+" use menu for command line completion
 set wildmenu
 
-set background=dark
-set belloff=all
-set colorcolumn=80
-set comments=fb:-,fb:*,n:>
-set commentstring=
-set complete=.,w,b,u,t
-set define=
-set dict=~/.vim/spell/words.dict
-set display=lastline
-set encoding=utf-8
-set fillchars=vert:\|,fold:.,foldsep:\|
-set formatoptions=tcqj
-set history=10000
-set include=''
-set laststatus=2
-set listchars=tab:<->,trail:-,nbsp:+
-set mouse=nvi
-set mousemodel=popup_setpos
-set nrformats=bin,hex
-set numberwidth=6
-set path=.,,
-set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize,terminal
-set shiftwidth=2
-set shortmess=ltTotOCF
-set sidescroll=1
-set spelllang=en_us,pt_br,de_de
-set spellsuggest=fast,15
-set switchbuf=uselast
-set t_Co=256
-set tabpagemax=50
-set tabstop=2
-set tags=./tags;,tags
-set ttimeout
-set ttimeoutlen=50
-set viewoptions=folds,cursor,curdir,unix,slash
-set viminfo=!,'100,<50,s10,h
+" specifies how command line completion is done
 set wildoptions=pum,tagfile
 
-function! s:VimChooseColorschemeForMe() abort
-  let l:options = [
-        \  'habamax',
-        \  'lunaperche',
-        \  'murphy',
-        \  'pablo',
-        \  'slate',
-        \]
-  let l:choice = rand(srand()) % len(l:options)
-  execute printf("colorscheme %s", l:options[l:choice])
+function! s:VimChooseAColorschemeForMe(variant) abort
+  let l:options = {
+        \  'dark': [
+        \    'habamax',
+        \    'lunaperche',
+        \    'slate',
+        \  ],
+        \  'light': [
+        \    'morning',
+        \    'shine',
+        \    'zellner',
+        \  ],
+        \}
+  if has_key(l:options, a:variant)
+    let l:choice = rand(srand()) % len(l:options[a:variant])
+    execute printf("set background=%s", a:variant)
+    execute printf("colorscheme %s", l:options[a:variant][l:choice])
+  else
+    set background=dark
+    colorscheme habamax
+  endif
 endfunction
 
-call s:VimChooseColorschemeForMe()
+call s:VimChooseAColorschemeForMe('dark')
 
 if has("gui_running")
   set guioptions-=T
