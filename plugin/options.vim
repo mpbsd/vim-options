@@ -23,6 +23,7 @@ let s:categories = {
       \    'number': v:true,
       \    'relativenumber': v:true,
       \    'ruler': v:true,
+      \    'runtime ftplugin/man.vim': v:true,
       \    'secure': v:true,
       \    'showcmd': v:true,
       \    'showmode': v:true,
