@@ -23,7 +23,6 @@ let s:categories = {
       \    'number': v:true,
       \    'relativenumber': v:true,
       \    'ruler': v:true,
-      \    'runtime ftplugin/man.vim': v:true,
       \    'secure': v:true,
       \    'showcmd': v:true,
       \    'showmode': v:true,
@@ -108,6 +107,9 @@ let s:categories = {
       \      'guiheadroom': 0,
       \    },
       \  },
+      \  'other': [
+			\    'runtime ftplugin/man.vim',
+      \  ],
       \}
 " }}}
 
@@ -132,6 +134,10 @@ function! s:VimSetOptionsFromCategory(ctg_name, ctg_opts) abort
         execute printf("set %s=%s", lhs, rhs)
       endfor
     endif
+	elseif a:ctg_name ==# 'other'
+		for opt in a:ctg_opts
+			execute opt
+		endfor
   endif
 endfunction
 
