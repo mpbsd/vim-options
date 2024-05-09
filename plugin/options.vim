@@ -8,8 +8,8 @@ set nocompatible
 " how backspace works at start of line
 set backspace=indent,eol,start
 
-" when this option is set, the FileType autocommand event is triggered. All
-" autocommands that match with the value of this option will be executed.
+" when this option is set, the FileType autocommand event is triggered.
+" All autocommands that match with the value of this option will be executed.
 filetype plugin indent on
 
 " syntax to be loaded for current buffer
@@ -18,8 +18,11 @@ syntax enable
 " take indent for new line from previous line
 set autoindent
 
-" autom. read file when changed outside of Vim
+" automatically read file when changed outside of Vim
 set autoread
+
+" 'dark' or 'light', used for highlight colors
+set background=dark
 
 " do not ring the bell for these reasons
 set belloff=all
@@ -45,8 +48,7 @@ set cursorline
 " pattern to be used to find a macro definition
 set define=
 
-" List of file names, separated by commas, that are used to lookup words for
-" keyword completion commands i_CTRL-X_CTRL-K
+" List of file names, separated by commas, that are used to lookup words for keyword completion commands i_CTRL-X_CTRL-K
 set dict=~/.vim/spell/words.dict
 
 " list of flags for how to display text
@@ -90,6 +92,9 @@ set nojoinspaces
 
 " do apply langmap to mapped characters
 set nolangremap
+
+" tells when last window has status lines
+set laststatus=2
 
 " don't redraw while executing macros
 set lazyredraw
