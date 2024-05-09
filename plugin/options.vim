@@ -2,14 +2,24 @@
 " Maintainer:  @mpbsd
 " Version:     0.2
 
+" disable Vi compatibility
+set nocompatible
+
+" how backspace works at start of line
+set backspace=indent,eol,start
+
+" when this option is set, the FileType autocommand event is triggered. All
+" autocommands that match with the value of this option will be executed.
+filetype plugin indent on
+
+" syntax to be loaded for current buffer
+syntax enable
+
 " take indent for new line from previous line
 set autoindent
 
 " autom. read file when changed outside of Vim
 set autoread
-
-" how backspace works at start of line
-set backspace=indent,eol,start
 
 " do not ring the bell for these reasons
 set belloff=all
@@ -22,9 +32,6 @@ set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-,fb:•
 
 " template for comments; used for fold marker
 set commentstring=
-
-" disable compatibility with Vi
-set nocompatible
 
 " specify how Insert mode completion works
 set complete=.,w,b,u,t
@@ -50,9 +57,6 @@ set encoding=utf-8
 
 " use spaces when <Tab> is inserted
 set expandtab
-
-" type of file, used for autocommands
-filetype plugin indent on
 
 " characters to use for displaying special items
 set fillchars=vert:│,fold:·,foldsep:│
@@ -91,7 +95,7 @@ set nolangremap
 set lazyredraw
 
 " characters for displaying in list mode
-set listchars=tab:<->,trail:-,nbsp:+
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
 
 " changes special characters in search patterns
 set magic
@@ -117,6 +121,9 @@ set path=.,,
 " show relative line number in front of each line
 set relativenumber
 
+" minimum nr. of lines above and below cursor
+set scrolloff=1
+
 " secure mode for reading .vimrc in current dir
 set secure
 
@@ -135,8 +142,14 @@ set showcmd
 " message on status line to show current mode
 set showmode
 
-" minimum number of columns to scroll horizontal
+" minimum number of columns to scroll horizontally
 set sidescroll=1
+
+" minimum number of columns to scroll horizontally
+set sidescroll=1
+
+" min. nr. of columns to left and right of cursor
+set sidescrolloff=2
 
 " no ignore case when pattern has uppercase
 set smartcase
@@ -164,9 +177,6 @@ set nostartofline
 
 " sets behavior when switching to another buffer
 set switchbuf=uselast
-
-" syntax to be loaded for current buffer
-syntax enable
 
 " number of colors
 set t_Co=256
