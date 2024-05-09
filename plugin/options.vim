@@ -84,7 +84,7 @@ let s:categories = {
       \    'tags': './tags;,tags',
       \    'ttimeoutlen': 50,
       \    'viewoptions': 'folds,cursor,curdir,unix,slash',
-      \    'viminfo': "\!,'100,<50,s10,h",
+      \    'viminfo': "\\\!,'100,<50,s10,h",
       \    'wildoptions': 'pum,tagfile',
       \  },
       \  'colorschemes': [
