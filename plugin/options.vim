@@ -50,7 +50,6 @@ let s:categories = {
       \    'encoding': 'utf-8',
       \    'filetype': 'on',
       \    'fillchars': 'vert:\|,fold:.,foldsep:\|',
-      \    'fillchars': 'vert:│,fold:·,foldsep:│',
       \    'formatoptions': 'tcqj',
       \    'history': 10000,
       \    'include': '',
