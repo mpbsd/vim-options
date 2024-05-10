@@ -44,8 +44,7 @@ set cursorline
 " pattern to be used to find a macro definition
 set define=
 
-" list of file names, separated by commas, that are used to lookup words for
-" keyword completion commands i_CTRL-X_CTRL-K
+" i_CTRL-X_CTRL-K will autocomplete with the words it finds in these files
 set dict=~/.vim/spell/words.dict
 
 " list of flags for how to display text
@@ -150,8 +149,7 @@ set sidescroll=1
 " minimum number of columns to the left and right sides of the cursor
 set sidescrolloff=2
 
-" override the 'ignorecase' option if the search pattern contains upper case
-" characters
+" let upper case letters inhibit the ignorecase option
 set smartcase
 
 " Do smart autoindenting when starting a new line.
