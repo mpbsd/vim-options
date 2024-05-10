@@ -48,8 +48,8 @@ set cursorline
 " pattern to be used to find a macro definition
 set define=
 
-" list of file names, separated by commas, that are used to
-" lookup words for keyword completion commands i_CTRL-X_CTRL-K
+" list of file names, separated by commas, that are used to lookup words for
+" keyword completion commands i_CTRL-X_CTRL-K
 set dict=~/.vim/spell/words.dict
 
 " list of flags for how to display text
@@ -145,31 +145,30 @@ set shortmess=ltToOCF
 " show (partial) command in the last line of the screen
 set showcmd
 
-" message on status line to show current mode
+" if in insert, replace or visual mode, put a message on the last line
 set noshowmode
 
 " minimum number of columns to scroll horizontally
 set sidescroll=1
 
-" minimum number of columns to scroll horizontally
-set sidescroll=1
-
-" min. nr. of columns to left and right of cursor
+" minimum number of columns to the left and right sides of the cursor
 set sidescrolloff=2
 
-" no ignore case when pattern has uppercase
+" override the 'ignorecase' option if the search pattern contains upper case
+" characters. Only used when the search pattern is typed and 'ignorecase'
+" option is on.
 set smartcase
 
-" smart autoindenting for C programs
+" Do smart autoindenting when starting a new line.
 set smartindent
 
 " use shiftwidth when inserting <Tab>
 set smarttab
 
-" language(s) to do spell checking for
+" languages to do spell checking for
 set spelllang=en_us,pt_br,de_de
 
-" method(s) used to suggest spelling corrections
+" methods used to suggest spelling corrections
 set spellsuggest=fast,15
 
 " new window from split is below the current one
@@ -190,7 +189,7 @@ set t_Co=256
 " maximum number of tab pages for -p and 'tab all'
 set tabpagemax=50
 
-" number of spaces that <Tab> in file uses
+" number of spaces that <Tab> in file counts for
 set tabstop=2
 
 " list of file names used by the tag command
@@ -217,7 +216,7 @@ set undofile
 " specifies what to save for :mkview
 set viewoptions=folds,cursor,curdir
 
-" use .viminfo file upon startup and exiting
+" use viminfofile upon startup and exiting
 set viminfo=!,'100,<50,s10,h
 
 " use menu for command line completion
