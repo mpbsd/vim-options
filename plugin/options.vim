@@ -225,6 +225,16 @@ set wildmenu
 " specifies how command line completion is done
 set wildoptions=pum,tagfile
 
+" use ":DiffOrig" to see the differences between the current buffer and the file
+" it was loaded from.
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+      \ | diffthis | wincmd p | diffthis
+
+" read Ex commands from {file} in each directory given by runtimepath and/or
+" packpath.
+runtime macros/matchit.vim
+runtime ftplugin/man.vim
+
 function! s:VimChooseAColorschemeForMe(variant) abort
   let l:options = {
         \  'dark': [
@@ -260,6 +270,3 @@ if has("gui_running")
   set guifont=Hack\ Nerd\ Font\ Mono\ 14
   set guiheadroom=0
 endif
-
-runtime macros/matchit.vim
-runtime ftplugin/man.vim
