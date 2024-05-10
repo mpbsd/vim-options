@@ -11,7 +11,7 @@ set backspace=indent,eol,start
 " autocommands that match with the value of this option will be executed
 filetype plugin indent on
 
-" syntax to be loaded for current buffer
+" enables Vim to show parts of the text in another font or color
 syntax enable
 
 " take indent for new line from previous line
@@ -63,7 +63,7 @@ set fillchars=vert:│,fold:·,foldsep:│
 " how automatic formatting is to be done
 set formatoptions=tcqj
 
-" whether to invoke fsync() after file write
+" don't invoke fsync() after file write
 set nofsync
 
 " don't unload buffer when it is abandoned
@@ -84,7 +84,7 @@ set include=
 " highlight match while typing search pattern
 set incsearch
 
-" two spaces after a period with a join command
+" don't insert two spaces after a period with a join command
 set nojoinspaces
 
 " don't apply langmap to mapped characters
@@ -141,7 +141,7 @@ set shortmess=ltToOCF
 " show (partial) command in the last line of the screen
 set showcmd
 
-" if in insert, replace or visual mode, put a message on the last line
+" don't show the mode() on the last line
 set noshowmode
 
 " minimum number of columns to scroll horizontally
@@ -172,7 +172,7 @@ set splitbelow
 " new window is put right of the current one
 set splitright
 
-" commands move cursor to first non-blank in line
+" if possible, keep the cursor in the same column when moving vertically
 set nostartofline
 
 " sets behavior when switching to another buffer
@@ -220,7 +220,7 @@ set wildmenu
 " specifies how command line completion is done
 set wildoptions=pum,tagfile
 
-" see differences between the current buffer and the file it was loaded from
+" show differences between the current buffer and the file it was loaded from
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
 
