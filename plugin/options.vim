@@ -8,8 +8,7 @@ set nocompatible
 " how backspace works at start of line
 set backspace=indent,eol,start
 
-" when this option is set, the FileType autocommand event is triggered. All
-" autocommands that match with the value of this option will be executed.
+" autocommands that match with the value of this option will be executed
 filetype plugin indent on
 
 " syntax to be loaded for current buffer
@@ -155,8 +154,7 @@ set sidescroll=1
 set sidescrolloff=2
 
 " override the 'ignorecase' option if the search pattern contains upper case
-" characters. Only used when the search pattern is typed and 'ignorecase'
-" option is on.
+" characters
 set smartcase
 
 " Do smart autoindenting when starting a new line.
@@ -225,13 +223,11 @@ set wildmenu
 " specifies how command line completion is done
 set wildoptions=pum,tagfile
 
-" use ":DiffOrig" to see the differences between the current buffer and the file
-" it was loaded from.
+" see differences between the current buffer and the file it was loaded from
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
       \ | diffthis | wincmd p | diffthis
 
-" read Ex commands from {file} in each directory given by runtimepath and/or
-" packpath.
+" read Ex commands from {file} in each directory given by runtimepath/packpath
 runtime macros/matchit.vim
 runtime ftplugin/man.vim
 
