@@ -20,10 +20,7 @@ set autoindent
 " automatically read file when changed outside of Vim
 set autoread
 
-" 'dark' or 'light', used for highlight colors
-set background=dark
-
-" do not ring the bell for any reason
+" don't ring the bell for any reason
 set belloff=all
 
 " columns to highlight
