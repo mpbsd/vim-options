@@ -24,7 +24,7 @@ set autoread
 " 'dark' or 'light', used for highlight colors
 set background=dark
 
-" do not ring the bell for these reasons
+" do not ring the bell for any reason
 set belloff=all
 
 " columns to highlight
@@ -48,8 +48,8 @@ set cursorline
 " pattern to be used to find a macro definition
 set define=
 
-" list of file names, separated by commas, that are used to lookup words for
-" keyword completion commands i_CTRL-X_CTRL-K
+" list of file names, separated by commas, that are used to
+" lookup words for keyword completion commands i_CTRL-X_CTRL-K
 set dict=~/.vim/spell/words.dict
 
 " list of flags for how to display text
@@ -91,7 +91,7 @@ set incsearch
 " two spaces after a period with a join command
 set nojoinspaces
 
-" do apply langmap to mapped characters
+" don't apply langmap to mapped characters
 set nolangremap
 
 " tells when last window has status lines
@@ -130,7 +130,7 @@ set relativenumber
 " minimum nr. of lines above and below cursor
 set scrolloff=1
 
-" secure mode for reading .vimrc in current dir
+" secure mode for reading vimrc in current dir
 set secure
 
 " options for :mksession
@@ -142,11 +142,11 @@ set shiftwidth=2
 " list of flags, reduce length of messages
 set shortmess=ltToOCF
 
-" show (partial) command somewhere
+" show (partial) command in the last line of the screen
 set showcmd
 
 " message on status line to show current mode
-set showmode
+set noshowmode
 
 " minimum number of columns to scroll horizontally
 set sidescroll=1
